@@ -33,7 +33,7 @@ def format_to_postgresql(input_data):
     return list_info
 
 
-def create_database(db_name, params):
+def create_database(params: dict, db_name: str):
     """Создает базу данных PostgreSQL"""
     conn = psycopg2.connect(dbname="postgres", **params)
     conn.autocommit = True
@@ -71,5 +71,5 @@ def insert_vacancy_data(cur, vacancies):
             INSERT INTO vacancies (company_name, vacancy_name, vacancy_url, currency, salary_from, salary_to, salary_gross)
             VALUES (%s, %s, %s, %s, %s, %s, %s)
             """,
-                vacancy
+            vacancy
         )

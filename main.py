@@ -11,10 +11,10 @@ def main():
 
     db_name = 'vacancies'
 
-    params = config
+    params = config()
     conn = None
 
-    create_database(db_name, params)
+    create_database(params, db_name)
 
     params.update({'dbname': db_name})
     try:
@@ -30,13 +30,13 @@ def main():
                     insert_vacancy_data(cur, company_info_sql)
                     print(f"Данные о {company['name']} в vacancies успешно добавлены")
 
-                database_class = DBManager()
+                database_class = DBManager(conn, cur)
 
-                print(database_class.get_companies_and_vacancies_count(cur))
-                print(database_class.get_all_vacancies(cur))
-                print(database_class.get_avg_salary(cur))
-                print(database_class.get_vacancies_with_higher_salary(cur))
-                print(database_class.get_vacancies_with_keyword(cur, "программист"))
+                print(database_class.get_companies_and_vacancies_count())
+                print(database_class.get_all_vacancies())
+                print(database_class.get_avg_salary())
+                print(database_class.get_vacancies_with_higher_salary())
+                print(database_class.get_vacancies_with_keyword("инженер"))
 
     except (Exception, psycopg2.DatabaseError) as error:
         print(error)
