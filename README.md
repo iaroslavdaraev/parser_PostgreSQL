@@ -1,7 +1,7 @@
 # Итоговая работа курса БД PostgreSQL
 
 ## Подготовка
-Создать файл database.ini с параметрами
+Создать файл `database.ini` с параметрами
 <br> [postgresql]
 <br> host=localhost
 <br> user=postgres
